@@ -22,7 +22,6 @@ class App extends Component{
   
   getDataFromChild(step, childData){
 
-    console.log(childData);
     this.setState({[step.toLowerCase()] : {...childData}});
   }
 
