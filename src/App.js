@@ -9,16 +9,25 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      currentStep : "Personal"
+      currentStep : "Personal",
+      personal: {},
+      education: {},
+      experience: {}
     };
 
     this.changeStep = this.changeStep.bind(this);
+    this.getDataFromChild = this.getDataFromChild.bind(this);
   }
 
   
+  getDataFromChild(step, childData){
+
+    console.log(childData);
+    this.setState({[step.toLowerCase()] : {...childData}});
+  }
 
   changeStep(e) {
-    
+
     this.setState({currentStep: e.target.id});
 
   }
@@ -33,7 +42,7 @@ class App extends Component{
           <div onClick={this.changeStep} id = "Education">Education</div>
           <div onClick={this.changeStep} id = "Experience">Experience</div>
         </div>
-      <Step title = {this.state.currentStep}/> 
+      <Step title = {this.state.currentStep} formData = {this.state[this.state.currentStep.toLowerCase()]} passData = {this.getDataFromChild}/> 
       </div>
     );
   }
