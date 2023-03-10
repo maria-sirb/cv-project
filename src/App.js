@@ -22,7 +22,17 @@ class App extends Component{
   
   getDataFromChild(step, childData){
 
+    console.log(childData);
     this.setState({[step.toLowerCase()] : {...childData}});
+    if(this.state.currentStep == "Personal")
+    {
+      this.setState({currentStep : "Education"});
+    }
+    else if(this.currentStep == "Education")
+    {
+      this.setState({currentStep : "Experience"});
+    }
+    
   }
 
   changeStep(e) {
