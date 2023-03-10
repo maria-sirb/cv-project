@@ -8,13 +8,14 @@ export class Personal extends Component{
 
         };
         this.submitData = this.submitData.bind(this);
+        this.displayPhoto = this.displayPhoto.bind(this);
     }
 
     submitData(e) {
 
         e.preventDefault();
         let formData = { 
-            photo : e.target.photo.value, 
+            photo :   URL.createObjectURL(e.target.photo.files[0]), 
             firstName : e.target.firstName.value, 
             lastName : e.target.lastName.value, 
             email : e.target.email.value,
@@ -27,6 +28,10 @@ export class Personal extends Component{
 
     }
 
+    displayPhoto(e){
+        this.setState({photo : URL.createObjectURL(e.target.files[0])});
+    }
+
     render() {
 
         return (
@@ -35,7 +40,8 @@ export class Personal extends Component{
                 <form onSubmit={this.submitData}>
                     <div>
                         <label htmlFor = "photo">Photo</label>
-                        <input type = "file" id = "photo" name = "photo" accept="image/png, image/jpeg" defaultValue = {this.props.formData.photo || ""}></input>
+                        <input type = "file" id = "photo" name = "photo" accept="image/png, image/jpeg" onChange = {this.displayPhoto} ></input>
+                        <img src = {this.state.photo || this.props.formData.photo}></img>
                     </div>
                     <div>
                         <label htmlFor = "first-name">First Name*</label>
