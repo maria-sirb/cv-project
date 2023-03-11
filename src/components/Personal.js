@@ -14,14 +14,17 @@ export class Personal extends Component{
     submitData(e) {
 
         e.preventDefault();
+        let photoUrl;
+        (e.target.photo.files[0]) ? photoUrl = URL.createObjectURL(e.target.photo.files[0]) : photoUrl = "";
         let formData = { 
-            photo :   URL.createObjectURL(e.target.photo.files[0]), 
+            photo :   photoUrl, 
             firstName : e.target.firstName.value, 
             lastName : e.target.lastName.value, 
             email : e.target.email.value,
             phone : e.target.phone.value, 
             address : e.target.address.value, 
-            city : e.target.city.value};
+            city : e.target.city.value
+        };
 
         this.setState({...formData});
         this.props.passData(this.props.title, formData);                
@@ -34,6 +37,7 @@ export class Personal extends Component{
 
     render() {
 
+       // console.log(this.props.formData);
         return (
             <div>
                 <h1>{this.props.title}</h1>
