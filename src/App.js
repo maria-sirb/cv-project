@@ -11,8 +11,8 @@ class App extends Component{
     this.state = {
       currentStep : "Personal",
       personal: {},
-      education: {},
-      experience: {}
+      education: [],
+      experience: []
     };
 
     this.changeStep = this.changeStep.bind(this);
@@ -22,17 +22,24 @@ class App extends Component{
   
   getDataFromChild(step, childData){
 
-    console.log(childData);
-    this.setState({[step.toLowerCase()] : {...childData}});
-    if(this.state.currentStep == "Personal")
+   // console.log(childData);
+   // this.setState({[step.toLowerCase()] : [...childData]});
+    if(step == "Personal")
     {
+      this.setState({personal : {...childData}});
       this.setState({currentStep : "Education"});
     }
-    else if(this.currentStep == "Education")
+    else if(step == "Education")
     {
-      this.setState({currentStep : "Experience"});
+      //this.setState({education : [...this.state.education, {...childData}]});
+      this.setState({education : [...childData]});
+     // this.setState({currentStep : "Experience"});
     }
     
+  }
+  goToNextStep(step)
+  {
+
   }
 
   changeStep(e) {
@@ -43,6 +50,7 @@ class App extends Component{
 
   render() { 
 
+    console.log(this.state.personal);
     let Step = componentsMap[this.state.currentStep];
     return(
       <div className="App">
