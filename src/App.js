@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { Education } from "./components/Education";
-import { Experience } from "./components/Experience";
+import { Experience } from "./components/Work";
 import { Personal } from "./components/Personal";
 import { componentsMap } from "./componentsMap";
 class App extends Component{
@@ -12,7 +12,7 @@ class App extends Component{
       currentStep : "Personal",
       personal: {},
       education: [],
-      experience: []
+      work: []
     };
 
     this.changeStep = this.changeStep.bind(this);
@@ -35,11 +35,16 @@ class App extends Component{
       this.setState({education : [...childData]});
      // this.setState({currentStep : "Experience"});
     }
+    else if(step == "Work")
+    {
+      this.setState({work : [...childData]});
+    }
     
   }
+
   goToNextStep(step)
   {
-
+    
   }
 
   changeStep(e) {
@@ -50,14 +55,14 @@ class App extends Component{
 
   render() { 
 
-    console.log(this.state.personal);
+    console.log(this.state);
     let Step = componentsMap[this.state.currentStep];
     return(
       <div className="App">
         <div className = "Steps">
           <div onClick={this.changeStep} id = "Personal">Personal</div>
           <div onClick={this.changeStep} id = "Education">Education</div>
-          <div onClick={this.changeStep} id = "Experience">Experience</div>
+          <div onClick={this.changeStep} id = "Work">Work Experience</div>
         </div>
       <Step title = {this.state.currentStep} formData = {this.state[this.state.currentStep.toLowerCase()]} passData = {this.getDataFromChild}/> 
       </div>
