@@ -12,7 +12,8 @@ class App extends Component{
       currentStep : "Personal",
       personal: {},
       education: [],
-      work: []
+      work: [],
+      skills: []
     };
 
     this.changeStep = this.changeStep.bind(this);
@@ -65,6 +66,7 @@ class App extends Component{
           <div onClick={this.changeStep} id = "Work">Work Experience</div>
         </div>
       <Step title = {this.state.currentStep} formData = {this.state[this.state.currentStep.toLowerCase()]} passData = {this.getDataFromChild}/> 
+     
       </div>
     );
   }
