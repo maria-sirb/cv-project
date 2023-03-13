@@ -30,16 +30,13 @@ class App extends Component{
       this.setState({personal : {...childData}});
       this.setState({currentStep : "Education"});
     }
-    else if(step == "Education")
+    else
     {
       //this.setState({education : [...this.state.education, {...childData}]});
-      this.setState({education : [...childData]});
+      this.setState({[step.toLowerCase()] : [...childData]});
      // this.setState({currentStep : "Experience"});
     }
-    else if(step == "Work")
-    {
-      this.setState({work : [...childData]});
-    }
+    
     
   }
 
@@ -64,6 +61,7 @@ class App extends Component{
           <div onClick={this.changeStep} id = "Personal">Personal</div>
           <div onClick={this.changeStep} id = "Education">Education</div>
           <div onClick={this.changeStep} id = "Work">Work Experience</div>
+          <div onClick={this.changeStep} id = "Skills">Skills</div>
         </div>
       <Step title = {this.state.currentStep} formData = {this.state[this.state.currentStep.toLowerCase()]} passData = {this.getDataFromChild}/> 
      
