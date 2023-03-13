@@ -9,7 +9,8 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      currentStep : "Personal",
+      steps : ["Personal", "Education", "Work", "Skills"],
+      currentStep : 0,
       personal: {},
       education: [],
       work: [],
@@ -18,6 +19,8 @@ class App extends Component{
 
     this.changeStep = this.changeStep.bind(this);
     this.getDataFromChild = this.getDataFromChild.bind(this);
+    this.goBack = this.goBack.bind(this);
+    this.goToNextStep = this.goToNextStep.bind(this);
   }
 
   
@@ -28,7 +31,7 @@ class App extends Component{
     if(step == "Personal")
     {
       this.setState({personal : {...childData}});
-      this.setState({currentStep : "Education"});
+
     }
     else
     {
@@ -40,21 +43,26 @@ class App extends Component{
     
   }
 
-  goToNextStep(step)
+  goToNextStep()
   {
-    
+    return (this.state.currentStep < this.state.steps.length - 1) ? this.setState({currentStep : this.state.currentStep + 1}) : null;
+  }
+  goBack(){
+    return (this.state.currentStep > 0) ? this.setState({currentStep : this.state.currentStep - 1}) : null;
   }
 
   changeStep(e) {
 
-    this.setState({currentStep: e.target.id});
+    let stepName =  e.target.id;
+    let stepIndex = this.state.steps.indexOf(stepName);
+    this.setState({currentStep: stepIndex});
 
   }
 
   render() { 
 
     console.log(this.state);
-    let Step = componentsMap[this.state.currentStep];
+    let Step = componentsMap[this.state.steps[this.state.currentStep]];
     return(
       <div className="App">
         <div className = "Steps">
@@ -63,8 +71,9 @@ class App extends Component{
           <div onClick={this.changeStep} id = "Work">Work Experience</div>
           <div onClick={this.changeStep} id = "Skills">Skills</div>
         </div>
-      <Step title = {this.state.currentStep} formData = {this.state[this.state.currentStep.toLowerCase()]} passData = {this.getDataFromChild}/> 
-     
+      <Step title = {this.state.steps[this.state.currentStep]} formData = {this.state[this.state.steps[this.state.currentStep].toLowerCase()]} passData = {this.getDataFromChild}/> 
+     <button onClick = {this.goBack}>Back</button>
+     <button onClick={this.goToNextStep}>Next</button>
       </div>
     );
   }
