@@ -26,7 +26,7 @@ export class Personal extends Component{
 
         e.preventDefault();
         let photoUrl;
-        (e.target.photo.files[0]) ? photoUrl = URL.createObjectURL(e.target.photo.files[0]) : photoUrl = "";
+        (e.target.photo.files[0]) ? photoUrl = URL.createObjectURL(e.target.photo.files[0]) : photoUrl = "/person.png";
         let formData = { 
             photo :   photoUrl, 
             firstName : e.target.firstName.value, 
@@ -36,7 +36,6 @@ export class Personal extends Component{
             address : e.target.address.value, 
             city : e.target.city.value
         };
-
         this.setState({...formData});
         this.props.passData(this.props.title, formData);                
 
