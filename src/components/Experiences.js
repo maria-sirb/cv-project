@@ -34,8 +34,7 @@ export class Experiences extends Component{
 
     delete(e){
         let index = e.target.id.split('-')[1]; //the id of the delete button is the index of the experience element to be deleted
-        let newExperiencesList = [...this.state.experiences.slice(0, index),
-                                ...this.state.experiences.slice(index + 1)];
+        let newExperiencesList = this.state.experiences.filter(function (val, idx) { return idx != index});         
         this.setState({experiences : [...newExperiencesList]});
         this.props.passData(newExperiencesList); //pas the new experience list to the parent (education/work component)
     }

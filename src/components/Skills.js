@@ -29,8 +29,7 @@ export class Skills extends Component{
 
     delete(e){
         let index = e.target.id.split("-")[1];
-        let newSkillsList = [...this.state.skills.slice(0, index),
-                              ...this.state.skills.slice(index + 1)];
+        let newSkillsList = this.state.skills.filter(function (val, idx) { return idx != index});              
         this.setState({skills : [...newSkillsList]});
         this.props.passData("Skills", newSkillsList);
     }
@@ -50,6 +49,7 @@ export class Skills extends Component{
             newSkillsList = [...this.state.skills.slice(0, this.state.activeForm),
                                 {...childData},
                             ...this.state.skills.slice(this.state.activeForm + 1)];
+            console.log("editing");                
         }
         else
         {
@@ -78,7 +78,7 @@ export class Skills extends Component{
                                    </div>
                         ) :
                         (
-                            display = <SkillsForm key = {index} edit = "true" number = {index} formData = {this.state.skills[index]}  discardData = {this.discardFormChanges} passData = {this.getDataFromForm}></SkillsForm>
+                            display = <SkillsForm key = {index} edit = {true} number = {index} formData = {this.state.skills[index]}  discardData = {this.discardFormChanges} passData = {this.getDataFromForm}></SkillsForm>
                         )
                         return display;
 
@@ -86,7 +86,7 @@ export class Skills extends Component{
                 }
                 <button type = "button" onClick={this.addForm}>Add skill</button>
                 {
-                    (this.state.activeForm == -1)? <SkillsForm edit = "false" number = {this.state.number} discardData = {this.discardFormChanges} passData = {this.getDataFromForm}></SkillsForm> : null
+                    (this.state.activeForm == -1)? <SkillsForm edit = {false} number = {this.state.number} discardData = {this.discardFormChanges} passData = {this.getDataFromForm}></SkillsForm> : null
                 }
             </div>
         )
