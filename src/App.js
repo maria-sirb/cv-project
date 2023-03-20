@@ -3,18 +3,22 @@ import { Education } from "./components/Education";
 import { Experience } from "./components/Work";
 import { Personal } from "./components/Personal";
 import { componentsMap } from "./componentsMap";
+import { Template } from "./components/Template";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import "./components/css/App.css";
 class App extends Component{
 
   
   constructor(){
     super();
     this.state = {
-      steps : ["Personal", "Education", "Work", "Skills"],
+      steps : ["Personal", "Education", "Work", "Skills", "Template"],
       currentStep : 0,
       personal: {},
       education: [],
       work: [],
-      skills: []
+      skills: [],
+      template: null
     };
 
     this.changeStep = this.changeStep.bind(this);
@@ -63,6 +67,7 @@ class App extends Component{
 
     console.log(this.state);
     let Step = componentsMap[this.state.steps[this.state.currentStep]];
+    let componentToDisplay;
     return(
       <div className="App">
         <div className = "Steps">
@@ -70,11 +75,24 @@ class App extends Component{
           <div onClick={this.changeStep} id = "Education">Education</div>
           <div onClick={this.changeStep} id = "Work">Work Experience</div>
           <div onClick={this.changeStep} id = "Skills">Skills</div>
+          <div onClick={this.changeStep} id = "Template">Template</div>
         </div>
-      <Step title = {this.state.steps[this.state.currentStep]} formData = {this.state[this.state.steps[this.state.currentStep].toLowerCase()]} passData = {this.getDataFromChild}/> 
+       {
+         
+         (this.state.currentStep < this.state.steps.length - 1)? 
+         (
+            <Step className = "step" title = {this.state.steps[this.state.currentStep]} formData = {this.state[this.state.steps[this.state.currentStep].toLowerCase()]} passData = {this.getDataFromChild}/> 
+         ) :
+         (
+            <Template className = "step" title = "Template" personal = {this.state.personal} education = {this.state.education} work = {this.state.work} skills = {this.state.skills} passData = {this.getDataFromChild}></Template>
+         )
+          
+       }
+       
+      
      <button onClick = {this.goBack}>Back</button>
      <button onClick={this.goToNextStep}>Next</button>
-      </div>
+     </div>
     );
   }
 }
