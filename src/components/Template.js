@@ -136,19 +136,34 @@ export class Template extends Component{
 
     render()
     {
-        console.log(this.props.education);
         let MyDocument = (<Document>
             <Page size = "A4" style = {this.styles.page}>
                 <View style = {this.styles.content}>
                     <View style = {this.styles.leftCol}>
-                        <Image style = {this.styles.image} src = {this.props.personal.photo} alt = "profile image"></Image>
+                       {
+                            (this.props.personal.photo && this.props.personal.photo != "/person.png") ?
+                            <View>
+                                <Image style = {this.styles.image} src = {this.props.personal.photo} alt = "profile image"></Image>
+                            </View>: null
+                        }
                         <Text style = {this.styles.leftHeader}>PERSONAL</Text>
                         <View style = {this.styles.leftSection}>
                             <View style = {this.styles.personalInfo}>
-                                <Text style = {this.styles.smallHeader}>Name</Text>
-                                <Text style = {this.styles.personalDetail}>{this.props.personal.firstName} {this.props.personal.lastName}</Text>
-                                <Text style = {this.styles.smallHeader}>Email</Text>
+                               {
+                                    (this.props.personal.firstName && this.props.personal.lastName) ?
+                                    <View>
+                                        <Text style = {this.styles.smallHeader}>Name</Text>
+                                        <Text style = {this.styles.personalDetail}>{this.props.personal.firstName} {this.props.personal.lastName}</Text>
+                                    </View>: null
+                                }
+                                {
+                                    (this.props.personal.email) ?
+                                    <View>
+                                       <Text style = {this.styles.smallHeader}>Email</Text>
                                 <Text style = {this.styles.personalDetail}>{this.props.personal.email}</Text>
+                                    </View>: null
+                                }
+                                
                                 {
                                     (this.props.personal.phone) ?
                                     <View>
@@ -176,7 +191,7 @@ export class Template extends Component{
                             {
                                 this.props.education.map(education => {
                                     return (
-                                    <View style = {this.styles.experience}>
+                                    <View key = {this.props.education.indexOf(education)} style = {this.styles.experience}>
                                         <Text style = {this.styles.date}>{education.startMonth.slice(0, 3)} {education.startYear} - {education.endMonth.slice(0, 3)} {education.endYear}</Text>
                                         <View>
                                             <Text style = {this.styles.experienceTitle}>{education.degree}</Text>
@@ -192,7 +207,7 @@ export class Template extends Component{
                             {
                                 this.props.work.map(work => {
                                     return (
-                                    <View style = {this.styles.experience}>
+                                    <View key = {this.props.work.indexOf(work)} style = {this.styles.experience}>
                                         <Text style = {this.styles.date}>{work.startMonth.slice(0, 3)} {work.startYear} - {work.endMonth.slice(0, 3)} {work.endYear}</Text>
                                         <View>
                                             <Text style = {this.styles.experienceTitle}>{work.job}</Text>
@@ -210,7 +225,7 @@ export class Template extends Component{
                                     let skillNumber = skillsMap[skill.level];
                                     let skillLevels = [1, 2, 3, 4, 5];
                                     return(
-                                        <View style = {this.styles.skill}>
+                                        <View key = {this.props.skills.indexOf(skill)} style = {this.styles.skill}>
                                             <View style = {this.styles.skillName}>
                                                 <Text >{skill.skill}</Text>
                                             </View>
