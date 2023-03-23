@@ -84,8 +84,9 @@ export class Experiences extends Component{
         }
         let FormToDisplay = formsMap[this.props.title];
         return (
-            <div>
+            <div className="step-content">
                 <h1>{this.props.title}</h1>
+                <div className="items">
                 {
                     this.props.formData.map(experience => {
                         let index = this.props.formData.indexOf(experience); 
@@ -96,15 +97,21 @@ export class Experiences extends Component{
                         (  
                             display = 
                             <div key = {index}>
-                            <h3>{experience[experienceTypeNames[0]]}</h3>
-                            <h3>{experience[experienceTypeNames[1]]}</h3>
-                            <h3>{experience[experienceTypeNames[2]]}</h3>
-                            <p>{experience.startMonth}</p>
-                            <p>{experience.startYear}</p>
-                            <p>{experience.endMonth}</p>
-                            <p>{experience.endYear}</p>
-                            <button id = {"edit-" + index} onClick = {this.edit}>Edit</button>
-                            <button id = {"delete-" + index} onClick = {this.delete}>Delete</button>
+                            <div className="item-text">
+                                <h3>{experience[experienceTypeNames[0]]}</h3>
+                                <p>{experience[experienceTypeNames[2]] + ", " + experience[experienceTypeNames[1]]}</p>
+                                <div className="date">
+                                    <p>{experience.startMonth + " " + experience.startYear + " - " + experience.endMonth + " " + experience.endYear}</p>
+                                </div>
+                            </div>
+                            <div className="options-btns">
+                                <button id = {"edit-" + index} onClick = {this.edit}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>edit</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                                </button>
+                                <button id = {"delete-" + index} onClick = {this.delete}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>                                
+                                </button>
+                            </div>
                             </div>
                         ) : 
                         (display = <FormToDisplay key = {index} edit = {true} number = {index} discardData = {this.discardFormChanges} passData = {this.getDataFromForm} formData = {this.state.experiences[index]}></FormToDisplay>)
@@ -112,10 +119,16 @@ export class Experiences extends Component{
                         return display;
                     })
                 }
-                <button type = "button" onClick={this.addForm}>Add {this.props.title}</button>
-                {
-                    (this.state.activeForm == -1) ? (<FormToDisplay edit = {false} number = {this.state.number} discardData = {this.discardFormChanges} passData = {this.getDataFromForm} formData = {this.state.experiences[this.state.number]}></FormToDisplay>) : null
-                }      
+                </div>
+                <div className="creation-container">
+                    <button type = "button" onClick={this.addForm}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                        <p>Add {this.props.title}</p>
+                    </button>
+                    {
+                        (this.state.activeForm == -1) ? (<FormToDisplay edit = {false} number = {this.state.number} discardData = {this.discardFormChanges} passData = {this.getDataFromForm} formData = {this.state.experiences[this.state.number]}></FormToDisplay>) : null
+                    }
+                </div>  
             </div>
         );
     }

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Document, Page, Text, View, StyleSheet, Image, PDFDownloadLink, PDFViewer, Svg, Path, Polygon} from "@react-pdf/renderer";
 
 
-import "./css/App.css"
+
 import { skillsMap } from "../skillsMap";
 export class Template extends Component{
 

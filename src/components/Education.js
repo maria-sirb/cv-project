@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Experiences } from "./Experiences";
+import '../css/Experiences.css';
 export class Education extends Component{
 
     constructor(props) {
@@ -19,10 +20,7 @@ export class Education extends Component{
     render() {
 
         return (
-
-            <div>
                 <Experiences title = "Education" formData = {this.state.education} passData = {this.getData}></Experiences>
-            </div>
         );
     }
 }

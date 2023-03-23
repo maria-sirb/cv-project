@@ -19,7 +19,6 @@ export class MonthDropdown extends Component{
     render() {
 
         return (
-            <div>
             <select name="start" onChange={this.chooseMonth} defaultValue = {this.props.default} >
             <option value="January">January</option>
             <option value="February">February</option>
@@ -34,7 +33,6 @@ export class MonthDropdown extends Component{
             <option value="November">November</option>
             <option value="December">December</option>
             </select>
-            </div>
         );
     }
 }

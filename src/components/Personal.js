@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import "../css/Personal.css";
 export class Personal extends Component{
 
     constructor(props) {
@@ -52,40 +53,42 @@ export class Personal extends Component{
 
         console.log(this.state);
         return (
-            <div>
+            <div className="personal">
                 <h1>{this.props.title}</h1>
                 <form onSubmit={this.submitData}>
-                    <div>
-                        <label htmlFor = "photo">Photo</label>
-                        <input type = "file" id = "photo" name = "photo" accept="image/png, image/jpeg" onChange = {this.displayPhoto} ></input>
-                        <img src = {this.state.photo}></img>
-                        <button type = "button" onClick={this.removePhoto}>Remove</button>
+                    <div className= {["photo-section", "item1"].join(' ')}>
+                        <div className= "input-container">
+                            <img src = {this.state.photo}></img>
+                            <button type = "button" onClick={this.removePhoto}>Remove</button>
+                            <label htmlFor = "photo">Add Photo</label>
+                            <input type = "file" id = "photo" name = "photo" accept="image/png, image/jpeg" onChange = {this.displayPhoto} ></input>
+                        </div>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item2"].join(' ')}>
                         <label htmlFor = "first-name">First Name*</label>
                         <input type = "text" id = "first-name" name = "firstName" defaultValue = {this.state.firstName} required></input>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item3"].join(' ')}>
                         <label htmlFor = "last-name">Last Name*</label>
                         <input type = "text" id = "last-name" name = "lastName" defaultValue = {this.state.lastName} required></input>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item4"].join(' ')}>
                         <label htmlFor = "email">Email*</label>
                         <input type = "email" id = "email" name = "email" defaultValue = {this.state.email} required></input>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item5"].join(' ')}>
                         <label htmlFor = "phone">Phone Number</label>
                         <input type = "text" id = "phone" name = "phone" defaultValue = {this.state.phone}></input>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item6"].join(' ')}>
                         <label htmlFor = "addrerss">Address</label>
                         <input type = "text" id = "address" name = "address" defaultValue = {this.state.address}></input>
                     </div>
-                    <div>
+                    <div className= {["input-container", "item7"].join(' ')}>
                         <label htmlFor = "city">City/Town</label>
                         <input type = "text" id = "city" name = "city" defaultValue = {this.state.city}></input>
                     </div>
-                    <button type = "submit">Submit</button>
+                    <button type = "submit" className="submit">Save</button>
                 </form>
             </div>
         );
