@@ -51,7 +51,6 @@ export class Personal extends Component{
 
     render() {
 
-        console.log(this.state);
         return (
             <div className="personal">
                 <h1>{this.props.title}</h1>
@@ -59,8 +58,14 @@ export class Personal extends Component{
                     <div className= {["photo-section", "item1"].join(' ')}>
                         <div className= "input-container">
                             <img src = {this.state.photo}></img>
-                            <button type = "button" onClick={this.removePhoto}>Remove</button>
-                            <label htmlFor = "photo">Add Photo</label>
+                            <div className="photo-options">
+                                <button className = "remove-btn" type = "button" onClick={this.removePhoto}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>remove photo</title><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>
+                                </button>
+                                <label className = "add-btn" htmlFor = "photo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>add photo</title><path d="M13.09 20H6L12 14L13.88 15.88C14.5 14.9 15.36 14.1 16.4 13.6L18 12V13.09C18.33 13.04 18.66 13 19 13C19.34 13 19.67 13.04 20 13.09V8L14 2H6C4.89 2 4 2.89 4 4V20C4 21.1 4.89 22 6 22H13.81C13.46 21.39 13.21 20.72 13.09 20M13 3.5L18.5 9H13V3.5M8 9C9.11 9 10 9.9 10 11S9.11 13 8 13 6 12.11 6 11 6.9 9 8 9M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z" /></svg>
+                                </label>
+                            </div>
                             <input type = "file" id = "photo" name = "photo" accept="image/png, image/jpeg" onChange = {this.displayPhoto} ></input>
                         </div>
                     </div>
@@ -88,7 +93,10 @@ export class Personal extends Component{
                         <label htmlFor = "city">City/Town</label>
                         <input type = "text" id = "city" name = "city" defaultValue = {this.state.city}></input>
                     </div>
-                    <button type = "submit" className="submit">Save</button>
+                    <button type = "submit" className="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></svg>
+                        <p>Save</p>
+                    </button>
                 </form>
             </div>
         );
