@@ -53,8 +53,6 @@ export class EducationForm extends Component{
             endYear: this.state.education.endYear,
 
         };
-        console.log(formData);
-        console.log(e.target.degree.value);
         this.setState({education : {...formData}});
         this.props.passData(this.props.edit, formData);
 

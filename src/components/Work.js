@@ -13,7 +13,6 @@ export class Work extends Component{
        
     }
     getData(childData){
-        console.log(childData);
         this.setState({work : [...childData]});
         this.props.passData("Work", childData);
     }

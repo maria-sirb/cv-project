@@ -13,7 +13,6 @@ export class Education extends Component{
        
     }
     getData(childData){
-        console.log(childData);
         this.setState({education : [...childData]});
         this.props.passData("Education", childData);
     }
