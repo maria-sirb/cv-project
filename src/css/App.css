@@ -1,0 +1,215 @@
+:root{
+    --light-blue : rgb(100, 162, 249);
+    --dark-grey: rgb(46, 45, 45);
+    --dark-blue: rgb(78, 130, 203);
+}
+html, body, #root{
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+ }
+.App{
+
+    min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding : 30px 100px;
+    cursor : default;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-image:radial-gradient(120% 50% at top left,#f6b187 41%,#fa938d 92%, transparent 92.1%);
+    background-repeat:no-repeat;
+    color:var(--dark-grey);
+}
+.Steps{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;   
+}
+
+.Steps>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    
+}
+.Steps > div svg {
+    height : 30px;
+    width: auto;
+    cursor: pointer;
+    padding-bottom: 3px;
+    
+}
+.Steps > div svg:hover{
+    border: 1ps solid blue;
+    border-radius: 50%;
+    background-color: var(--dark-blue);
+    padding: 3px;
+}
+.Steps svg:hover + .step{
+    color: var(--dark-blue);
+}
+.Steps svg path{
+    fill: white;
+}
+.content{
+    align-self: center;
+    justify-self: center;
+    min-height: 60vh;
+    
+}
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: flex-end;
+}
+.nav-buttons button{
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+}
+.nav-buttons button svg{
+    width: 30px;
+    height: auto;
+   
+}
+button{
+    cursor: pointer;
+}
+path{
+    pointer-events: none;
+}
+.download{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: inherit;
+}
+.download svg{
+    height: 22px;
+    width: auto;
+}
+h1{
+    width: 100%;
+    border-bottom: 2px solid grey;
+}
+input, select{
+   border:2px solid grey;
+}
+input:focus, select:focus{
+    outline: none;
+    border: 3px solid var(--light-blue);
+}
+svg path{
+    fill: var(--dark-grey);
+}
+.nav-button p{
+    pointer-events: none;
+}
+.nav-buttons .inactive{
+
+    background-color: rgb(152, 170, 186);
+    color: white;
+}
+.nav-buttons .inactive:hover{
+    cursor: default;
+    text-decoration: none !important;
+}
+.nav-buttons .active{
+
+    background-color: var(--light-blue);
+    color: white;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+.nav-buttons .active:hover{
+    background-color: var(--dark-blue);
+}
+.nav-buttons button svg path{
+    fill : white;
+}
+button{
+    border: none;
+    background-color: rgb(159, 188, 208);
+    color: var(--dark-grey);
+    border-radius: 3px;
+}
+button:hover{
+    background-color: rgb(127, 165, 199);
+    text-decoration: underline;
+}
+button[class = "inactive"]{
+    background-color: rgb(178, 190, 202);
+    color: white;
+}
+button[class = "inactive"] svg path{
+    fill: white;
+}
+button[class = "inactive"]:hover{
+    text-decoration: none;
+    cursor: default;
+}
+@media(max-width : 700px){
+    .App{
+        padding: 20px 20px;
+    }
+}
+@media(max-width: 450px){
+    .Steps > div svg {
+        height : 25px;
+    }  
+    .Steps{
+        font-size: 12px;
+    } 
+    h1{
+        font-size: 18px;
+    } 
+    form label{
+        font-size: 14px;
+    }
+    .nav-buttons button{
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+        gap: 6px;
+        
+    }
+    .nav-buttons button svg{
+        width: 20px;
+        height: auto; 
+    }
+    .download{
+        gap: 3px;
+        width: 150px;
+        height: 30px;
+        margin-top: 10px;
+        font-size: 12px;
+        
+    }
+    .download svg{
+        height: 20px;
+        width: auto;
+    }
+    
+}
+
+

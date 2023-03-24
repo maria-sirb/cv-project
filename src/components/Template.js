@@ -29,7 +29,8 @@ export class Template extends Component{
             },
             pdfViewer : {
                 "minHeight" : "90vh",
-                "width" : "70vw"
+                "width" : "60vw",
+
             },
             title : {
                 "fontWeight" : "bold",
@@ -128,6 +129,10 @@ export class Template extends Component{
             skillName : {
                 "minWidth" : "80px",
                 "margin" : "5px"
+            },
+            link : {
+                "color" : "rgb(46, 45, 45)",
+                "textDecoration" : "none"
             }
 
         })
@@ -256,13 +261,15 @@ export class Template extends Component{
         </Document>);
 
         return(
-            <div className="step">
+            <div className="step-content">
+                <h1>{this.props.title}</h1>
                 <PDFViewer style = {this.styles.pdfViewer}>{MyDocument}</PDFViewer>
-                <div>
-                    <PDFDownloadLink document={MyDocument} fileName="resume.pdf">
+                <button className="download">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                    <PDFDownloadLink style = {this.styles.link} document={MyDocument} fileName="resume.pdf">
                          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download resume')}
                     </PDFDownloadLink>
-                </div>
+                </button>
             </div>
         )
     }
