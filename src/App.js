@@ -6,6 +6,7 @@ import { componentsMap } from "./componentsMap";
 import { Template } from "./components/Template";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import "./css/App.css";
+import { act } from "react-dom/test-utils";
 class App extends Component{
 
   
@@ -25,13 +26,12 @@ class App extends Component{
     this.getDataFromChild = this.getDataFromChild.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goToNextStep = this.goToNextStep.bind(this);
+    
   }
 
   
   getDataFromChild(step, childData){
 
-   // console.log(childData);
-   // this.setState({[step.toLowerCase()] : [...childData]});
     if(step == "Personal")
     {
       this.setState({personal : {...childData}});
@@ -40,26 +40,24 @@ class App extends Component{
     }
     else
     {
-      //this.setState({education : [...this.state.education, {...childData}]});
       this.setState({[step.toLowerCase()] : [...childData]});
-     // this.setState({currentStep : "Experience"});
     }
     
     
   }
 
-  goToNextStep()
+  goToNextStep(e)
   {
     return (this.state.currentStep < this.state.steps.length - 1) ? this.setState({currentStep : this.state.currentStep + 1}) : null;
   }
-  goBack(){
+  goBack(e){
+
     return (this.state.currentStep > 0) ? this.setState({currentStep : this.state.currentStep - 1}) : null;
   }
 
   changeStep(e) {
 
     let stepName =  e.target.id;
-    console.log(e.target);
     let stepIndex = this.state.steps.indexOf(stepName);
     this.setState({currentStep: stepIndex});
 
@@ -67,7 +65,21 @@ class App extends Component{
 
   render() { 
 
-    console.log(this.state);
+    let nextBtnClass, backBtnClass;
+    if(this.state.currentStep == 0)
+    {
+      backBtnClass = "inactive"
+    } 
+    else{
+      backBtnClass = "active"
+    }
+    if(this.state.currentStep == 4)
+    {
+      nextBtnClass = "inactive"
+    } 
+    else{
+      nextBtnClass = "active"
+    }
     let Step = componentsMap[this.state.steps[this.state.currentStep]];
     let componentToDisplay;
     return(
@@ -120,8 +132,14 @@ class App extends Component{
        
       
      <div className="nav-buttons">
-       <button onClick = {this.goBack}>Back</button>
-       <button onClick={this.goToNextStep}>Next</button>
+        <button className = {backBtnClass} onClick = {this.goBack}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+          <p>Back</p>
+        </button>
+       <button className = {nextBtnClass} onClick={this.goToNextStep}>
+          <p>Next</p>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        </button>
      </div>
      </div>
     );
